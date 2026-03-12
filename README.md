@@ -32,5 +32,5 @@ Lyra is built with performance and scalability in mind:
 
 ### 1. Clone the repo
 ```bash
-git clone [https://github.com/Ramiz1323/Lyra.git]
+git clone https://github.com/Ramiz1323/Lyra.git
 cd lyra
