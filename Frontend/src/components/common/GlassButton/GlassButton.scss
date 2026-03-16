@@ -1,0 +1,87 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.glass-btn {
+  position: relative;
+  border: none;
+  cursor: pointer;
+  font-family: $font-family;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: $radius-md;
+  padding: 0.9rem $space-xl;
+  transition: all $transition-base;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity $transition-base;
+  }
+
+  &--full {
+    width: 100%;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // ---- Primary ----
+  &--primary {
+    background: $btn-primary-bg;
+    color: #fff;
+
+    &::before {
+      background: $btn-primary-hover;
+    }
+
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba($accent-primary, 0.4),
+                  0 0 40px rgba($accent-primary, 0.2);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+
+  // ---- Outline ----
+  &--outline {
+    @include glass-card($blur: 12px);
+    color: $text-primary;
+    padding: 0.75rem $space-lg;
+
+    &:hover:not(:disabled) {
+      @include glass-card-hover;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.glass-btn__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-sm;
+}
+
+.glass-btn__icon {
+  font-size: 1.2rem;
+  transition: transform $transition-fast;
+
+  .glass-btn:hover & {
+    transform: translateX(3px);
+  }
+}

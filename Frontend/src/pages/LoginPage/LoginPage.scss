@@ -1,0 +1,108 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-page__main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 64px; // navbar height
+  min-height: calc(100vh - 64px);
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.login-page__hero-side {
+  display: flex;
+  align-items: center;
+  padding: $space-2xl;
+  position: relative;
+
+  // Subtle separator line
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba($glass-border, 0.6),
+      transparent
+    );
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.login-page__form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-2xl;
+  width: 100%;
+
+  @include mobile {
+    padding: $space-md;
+  }
+}
+
+// ---- Footer ----
+.login-page__footer {
+  border-top: 1px solid rgba($glass-border, 0.3);
+  padding: $space-lg $space-xl;
+
+  @include mobile {
+    padding: $space-lg $space-md;
+  }
+}
+
+.login-page__footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-sm;
+}
+
+.login-page__footer-links {
+  display: flex;
+  gap: $space-xl;
+
+  @include mobile {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $space-md;
+  }
+
+  a {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $text-muted;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $text-secondary;
+    }
+  }
+}
+
+.login-page__copyright {
+  font-size: 0.75rem;
+  color: $text-muted;
+}

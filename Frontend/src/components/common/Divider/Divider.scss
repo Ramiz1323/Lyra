@@ -1,0 +1,29 @@
+@use '../../../styles/variables' as *;
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  width: 100%;
+  margin: $space-sm 0;
+}
+
+.divider__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba($text-muted, 0.3),
+    transparent
+  );
+}
+
+.divider__text {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: $text-muted;
+  white-space: nowrap;
+  text-transform: uppercase;
+}

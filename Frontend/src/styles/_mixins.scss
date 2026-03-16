@@ -1,0 +1,102 @@
+@use 'variables' as *;
+
+// ========================
+// Glass Effect Mixins
+// ========================
+
+@mixin glass-card($blur: $glass-blur, $bg: $glass-bg, $border: $glass-border) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+}
+
+@mixin glass-card-hover {
+  background: $glass-bg-hover;
+  border-color: $glass-border-hover;
+  box-shadow: $shadow-glow, $shadow-card;
+}
+
+@mixin glass-input {
+  background: $input-bg;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid $input-border;
+  border-radius: $radius-md;
+  color: $input-text;
+  font-family: $font-family;
+  transition: border-color $transition-base, box-shadow $transition-base;
+
+  &:focus,
+  &:focus-within {
+    border-color: $input-border-focus;
+    box-shadow: 0 0 0 3px rgba($accent-primary, 0.15);
+    outline: none;
+  }
+}
+
+// ========================
+// Glow Effects
+// ========================
+
+@mixin glow-effect($color: $accent-primary, $spread: 30px) {
+  box-shadow: 0 0 $spread rgba($color, 0.3),
+              0 0 ($spread * 2) rgba($color, 0.15);
+}
+
+@mixin text-glow($color: $accent-light) {
+  text-shadow: 0 0 20px rgba($color, 0.5),
+               0 0 40px rgba($color, 0.2);
+}
+
+// ========================
+// Responsive Breakpoints
+// ========================
+
+@mixin mobile {
+  @media (max-width: $bp-tablet) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: ($bp-tablet + 1px)) and (max-width: $bp-desktop) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: ($bp-desktop + 1px)) {
+    @content;
+  }
+}
+
+@mixin mobile-only {
+  @media (max-width: $bp-mobile) {
+    @content;
+  }
+}
+
+// ========================
+// Utility Mixins
+// ========================
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

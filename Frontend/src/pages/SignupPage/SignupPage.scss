@@ -1,0 +1,123 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.signup-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-page__main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  padding-top: 64px;
+  min-height: calc(100vh - 64px);
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.signup-page__hero-side {
+  display: flex;
+  align-items: center;
+  padding: $space-2xl;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba($glass-border, 0.6),
+      transparent
+    );
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.signup-page__form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-2xl;
+  width: 100%;
+
+  @include mobile {
+    padding: $space-md;
+  }
+}
+
+// ---- Footer ----
+.signup-page__footer {
+  border-top: 1px solid rgba($glass-border, 0.3);
+  padding: $space-md $space-xl;
+
+  @include mobile {
+    padding: $space-lg $space-md;
+  }
+}
+
+.signup-page__footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  @include flex-between;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $space-md;
+    text-align: center;
+  }
+}
+
+.signup-page__copyright {
+  font-size: 0.75rem;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.signup-page__footer-links,
+.signup-page__footer-right {
+  display: flex;
+  align-items: center;
+  gap: $space-lg;
+
+  @include mobile {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $space-md;
+  }
+
+  a {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $text-muted;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $text-secondary;
+    }
+  }
+}
+
+.signup-page__footer-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $text-muted;
+}

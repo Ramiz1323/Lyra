@@ -1,0 +1,105 @@
+@use 'variables' as *;
+
+// ========================
+// Global Reset & Base
+// ========================
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-family;
+  background: $bg-primary;
+  color: $text-primary;
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+
+  // Deep dark gradient background
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(15, 30, 80, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(20, 40, 100, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(10, 20, 60, 0.3) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+// ========================
+// Typography
+// ========================
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  color: $text-primary;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+  color: $text-secondary;
+  line-height: 1.7;
+}
+
+a {
+  color: $accent-light;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $accent-secondary;
+  }
+}
+
+// ========================
+// Scrollbar
+// ========================
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bg-primary;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba($accent-primary, 0.3);
+  border-radius: $radius-full;
+
+  &:hover {
+    background: rgba($accent-primary, 0.5);
+  }
+}
+
+// ========================
+// Selection
+// ========================
+
+::selection {
+  background: rgba($accent-primary, 0.3);
+  color: $text-primary;
+}
+
+// Material Symbols sizing
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}

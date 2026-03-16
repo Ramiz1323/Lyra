@@ -1,0 +1,170 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.auth-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: $space-2xl;
+  overflow: hidden;
+  min-height: 100%;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.auth-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+}
+
+// ---- Floating Orbs (ambient glow) ----
+.auth-hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+
+  &--1 {
+    width: 350px;
+    height: 350px;
+    background: rgba($accent-primary, 0.25);
+    top: -10%;
+    left: -15%;
+    animation: orb-float-1 12s ease-in-out infinite;
+  }
+
+  &--2 {
+    width: 250px;
+    height: 250px;
+    background: rgba($accent-secondary, 0.2);
+    bottom: 10%;
+    right: -10%;
+    animation: orb-float-2 15s ease-in-out infinite;
+  }
+
+  &--3 {
+    width: 180px;
+    height: 180px;
+    background: rgba($accent-light, 0.15);
+    top: 50%;
+    left: 40%;
+    animation: orb-float-3 10s ease-in-out infinite;
+  }
+}
+
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, 40px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-25px, -30px) scale(1.05); }
+  66% { transform: translate(15px, -15px) scale(0.9); }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -25px) scale(1.15); }
+}
+
+// ---- Badge ----
+.auth-hero__badge {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: $accent-light;
+  border: 1px solid rgba($accent-primary, 0.4);
+  border-radius: $radius-full;
+  background: rgba($accent-primary, 0.1);
+  margin-bottom: $space-xl;
+  text-transform: uppercase;
+}
+
+// ---- Title ----
+.auth-hero__title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: $space-lg;
+  color: $text-primary;
+
+  @include tablet {
+    font-size: 2.3rem;
+  }
+}
+
+.auth-hero__highlight {
+  background: linear-gradient(135deg, $accent-primary, $accent-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  @include text-glow;
+}
+
+// ---- Description ----
+.auth-hero__description {
+  font-size: 1.05rem;
+  color: $text-secondary;
+  line-height: 1.7;
+  margin-bottom: $space-2xl;
+  max-width: 440px;
+}
+
+// ---- Feature Cards ----
+.auth-hero__features {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.auth-hero__feature-card {
+  @include glass-card($blur: 16px, $bg: rgba(15, 23, 52, 0.3));
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  padding: $space-md $space-lg;
+  transition: all $transition-base;
+
+  &:hover {
+    @include glass-card-hover;
+    transform: translateX(6px);
+  }
+}
+
+.auth-hero__feature-icon {
+  @include flex-center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: $radius-md;
+  background: rgba($accent-primary, 0.15);
+  color: $accent-light;
+
+  .material-symbols-outlined {
+    font-size: 1.3rem;
+  }
+}
+
+.auth-hero__feature-info {
+  h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  p {
+    font-size: 0.82rem;
+    color: $text-muted;
+    line-height: 1.4;
+  }
+}

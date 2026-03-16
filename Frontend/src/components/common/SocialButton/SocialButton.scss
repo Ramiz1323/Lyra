@@ -1,0 +1,38 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.social-btn {
+  @include glass-card($blur: 12px, $bg: rgba(15, 23, 52, 0.35));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-sm;
+  padding: 0.75rem $space-lg;
+  cursor: pointer;
+  font-family: $font-family;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: $text-primary;
+  flex: 1;
+  transition: all $transition-base;
+  min-width: 140px;
+
+  &:hover {
+    @include glass-card-hover;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.social-btn__icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.social-btn__label {
+  white-space: nowrap;
+}

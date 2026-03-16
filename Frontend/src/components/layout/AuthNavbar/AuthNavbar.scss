@@ -1,0 +1,119 @@
+@use "sass:color";
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.auth-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba($bg-primary, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba($glass-border, 0.5);
+}
+
+.auth-navbar__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.85rem $space-xl;
+  @include flex-between;
+
+  @include mobile {
+    padding: 0.75rem $space-md;
+  }
+}
+
+// ---- Logo ----
+.auth-navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  text-decoration: none;
+  color: $text-primary;
+}
+
+.auth-navbar__logo-icon {
+  @include flex-center;
+  width: 34px;
+  height: 34px;
+  border-radius: $radius-sm;
+  background: $accent-primary;
+  color: #fff;
+
+  .material-symbols-outlined {
+    font-size: 1.1rem;
+    font-variation-settings: 'FILL' 1;
+  }
+}
+
+.auth-navbar__logo-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  @at-root .auth-navbar__inner:has(.auth-navbar__cta) & {
+    @media (max-width: 360px) {
+      display: none; // Hide logo text on extremely small screens if CTA is present
+    }
+  }
+}
+
+// ---- Nav Links (desktop only) ----
+.auth-navbar__links {
+  display: flex;
+  align-items: center;
+  gap: $space-xl;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.auth-navbar__link {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: $text-secondary;
+  text-decoration: none;
+  transition: color $transition-fast;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: $accent-primary;
+    transition: width $transition-base;
+  }
+
+  &:hover {
+    color: $text-primary;
+
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+// ---- CTA Button ----
+.auth-navbar__cta {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: $accent-primary;
+  border-radius: $radius-sm;
+  text-decoration: none;
+  transition: all $transition-base;
+
+  &:hover {
+    background: color.adjust($accent-primary, $lightness: -5%);
+    box-shadow: 0 4px 15px rgba($accent-primary, 0.3);
+    transform: translateY(-1px);
+    color: #fff;
+  }
+}
