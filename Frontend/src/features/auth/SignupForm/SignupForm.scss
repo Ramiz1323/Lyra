@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../../styles/variables' as *;
 @use '../../../styles/mixins' as *;
 
@@ -57,6 +58,16 @@
     padding: $space-xl $space-md;
     gap: $space-md;
   }
+}
+
+.signup-form__error {
+  padding: $space-sm $space-md;
+  background: rgba($error, 0.1);
+  border: 1px solid rgba($error, 0.3);
+  border-radius: $radius-md;
+  color: $error;
+  font-size: 0.85rem;
+  text-align: center;
 }
 
 .signup-form__header {

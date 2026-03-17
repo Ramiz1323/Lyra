@@ -4,10 +4,12 @@ import GlassInput from '../../../components/common/GlassInput/GlassInput';
 import GlassButton from '../../../components/common/GlassButton/GlassButton';
 import SocialButton from '../../../components/common/SocialButton/SocialButton';
 import Divider from '../../../components/common/Divider/Divider';
+import { useAuth } from '../hooks/useAuth';
 import './LoginForm.scss';
 
 const LoginForm = () => {
-  const [formData, setFormData] = useState({
+  const { handleLogin, loading, error } = useAuth();
+  const [ formData, setFormData] = useState({
     email: '',
     password: '',
   });
@@ -16,9 +18,10 @@ const LoginForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login:', formData);
+    const { email, password } = formData;
+    await handleLogin({ email, password });
   };
 
   return (
@@ -39,6 +42,8 @@ const LoginForm = () => {
 
         {/* Form */}
         <form className="login-form__fields" onSubmit={handleSubmit}>
+          {error && <div className="login-form__error">{error}</div>}
+          
           <GlassInput
             label="Email Address"
             type="email"
@@ -74,10 +79,11 @@ const LoginForm = () => {
             type="submit"
             variant="primary"
             fullWidth
-            icon="arrow_forward"
+            icon={loading ? null : "arrow_forward"}
             id="login-submit-btn"
+            disabled={loading}
           >
-            Sign In
+            {loading ? "Signing In..." : "Sign In"}
           </GlassButton>
         </form>
 

@@ -4,9 +4,11 @@ import GlassInput from '../../../components/common/GlassInput/GlassInput';
 import GlassButton from '../../../components/common/GlassButton/GlassButton';
 import SocialButton from '../../../components/common/SocialButton/SocialButton';
 import Divider from '../../../components/common/Divider/Divider';
+import { useAuth } from '../hooks/useAuth';
 import './SignupForm.scss';
 
 const SignupForm = () => {
+  const { handleSignup, loading, error } = useAuth();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -18,9 +20,10 @@ const SignupForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Signup:', formData);
+    const { username, email, password } = formData;
+    await handleSignup({ username, email, password });
   };
 
   return (
@@ -36,6 +39,8 @@ const SignupForm = () => {
 
         {/* Form */}
         <form className="signup-form__fields" onSubmit={handleSubmit}>
+          {error && <div className="signup-form__error">{error}</div>}
+
           <div className="signup-form__name-row">
             <GlassInput
               label="Username"
@@ -46,7 +51,7 @@ const SignupForm = () => {
               value={formData.username}
               onChange={handleChange}
               required
-              autoComplete="given-name"
+              autoComplete="username"
             />
           </div>
 
@@ -98,11 +103,11 @@ const SignupForm = () => {
             type="submit"
             variant="primary"
             fullWidth
-            icon="arrow_forward"
+            icon={loading ? null : "arrow_forward"}
             id="signup-submit-btn"
-            disabled={!agreedToTerms}
+            disabled={!agreedToTerms || loading}
           >
-            Create Account
+            {loading ? "Creating Account..." : "Create Account"}
           </GlassButton>
         </form>
 

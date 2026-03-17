@@ -1,17 +1,17 @@
 import express from "express";
-import { register, verifyEmail, login, getMe } from "../controllers/auth.controller.js";
+import { signup, verifyEmail, login, getMe } from "../controllers/auth.controller.js";
 import { validateRegister, validateLogin  } from "../validators/auth.validator.js";
 import { authUser } from "../middlewares/auth.middleware.js";
 
 const authRouter = express.Router();
 
 /** 
- @route POST /api/auth/register
+ @route POST /api/auth/signup
  @desc Register a new user
  @access Public
  @body { username, email, password }
 */
-authRouter.post("/register", validateRegister, register);
+authRouter.post("/signup", validateRegister, signup);
 
 /** 
  @route GET /api/auth/verify-email
