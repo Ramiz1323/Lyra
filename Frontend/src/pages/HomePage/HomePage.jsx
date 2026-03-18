@@ -8,8 +8,11 @@ import Sidebar from '@components/layout/Sidebar';
 import Navbar from '@components/layout/Navbar';
 import Hero from '@components/layout/Hero';
 import './HomePage.scss';
+import { useChat } from '@features/chat/hooks/useChat';
 
 const HomePage = () => {
+  useChat();
+
   return (
     <div className="homepage-layout">
       {/* Desktop Sidebar */}
