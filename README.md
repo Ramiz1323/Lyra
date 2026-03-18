@@ -23,6 +23,7 @@ Lyra is built with performance and scalability in mind:
 | **Frontend** | React + SCSS (Responsive Design) |
 | **State** | Redux Toolkit |
 | **Backend** | Node.js + Express |
+| **Real-time** | Socket.io |
 | **Database** | MongoDB |
 | **AI Integration** | OpenAI / Anthropic API |
 
