@@ -1,4 +1,4 @@
-import api from "../../../services/api";
+import api from "@services/api";
 
 export async function signup(data) {
     return await api.post("/auth/signup", data);

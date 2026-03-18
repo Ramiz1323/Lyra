@@ -9,7 +9,7 @@ const Capabilities = () => {
   ];
 
   return (
-    <div className="capabilities-section">
+    <div className="capabilities-section" id="features">
       <h3 className="section-subtitle">CAPABILITIES</h3>
       <div className="capabilities-list">
         {items.map((item, i) => (

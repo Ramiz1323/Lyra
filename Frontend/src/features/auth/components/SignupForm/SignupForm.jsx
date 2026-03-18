@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import GlassInput from '../../../components/common/GlassInput/GlassInput';
-import GlassButton from '../../../components/common/GlassButton/GlassButton';
-import SocialButton from '../../../components/common/SocialButton/SocialButton';
-import Divider from '../../../components/common/Divider/Divider';
-import { useAuth } from '../hooks/useAuth';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import GlassInput from '@components/common/GlassInput/GlassInput';
+import GlassButton from '@components/common/GlassButton/GlassButton';
+import SocialButton from '@components/common/SocialButton/SocialButton';
+import Divider from '@components/common/Divider/Divider';
+import { useAuth } from '@features/auth/hooks/useAuth';
 import './SignupForm.scss';
 
 const SignupForm = () => {
-  const { handleSignup, loading, error } = useAuth();
+  const navigate = useNavigate();
+  const { handleSignup, user, loading, error } = useAuth();
+
+  useEffect(() => {
+    if (!loading && user) {
+      navigate("/");
+    }
+  }, [user, loading, navigate]);
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -24,6 +32,7 @@ const SignupForm = () => {
     e.preventDefault();
     const { username, email, password } = formData;
     await handleSignup({ username, email, password });
+    navigate("/login");
   };
 
   return (
@@ -32,9 +41,6 @@ const SignupForm = () => {
         {/* Header */}
         <div className="signup-form__header">
           <h2 className="signup-form__title">Create Account</h2>
-          <p className="signup-form__subtitle">
-            Start your 14-day free trial. No card required.
-          </p>
         </div>
 
         {/* Form */}

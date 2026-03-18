@@ -1,7 +1,7 @@
 import React from 'react';
-import AuthNavbar from '../../components/layout/AuthNavbar/AuthNavbar';
-import AuthHero from '../../features/auth/AuthHero/AuthHero';
-import LoginForm from '../../features/auth/LoginForm/LoginForm';
+import AuthNavbar from '@components/layout/AuthNavbar/AuthNavbar';
+import AuthHero from '@features/auth/components/AuthHero/AuthHero';
+import LoginForm from '@features/auth/components/LoginForm/LoginForm';
 import './LoginPage.scss';
 
 const LoginPage = () => {
@@ -26,7 +26,7 @@ const LoginPage = () => {
             <a href="#help">Help Center</a>
           </div>
           <p className="login-page__copyright">
-            &copy; 2024 Lyra AI Search. All rights reserved.
+            &copy; 2026 Lyra AI Technologies. All rights reserved.
           </p>
         </div>
       </footer>

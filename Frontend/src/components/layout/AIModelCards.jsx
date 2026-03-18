@@ -22,7 +22,7 @@ const AIModelCards = () => {
   ];
 
   return (
-    <section className="tools-section">
+    <section className="tools-section" id="models">
       <div className="section-header">
         <h2 className="section-title">Powerful AI Tools</h2>
         <a href="#all-tools" className="view-all">View all tools <span className="arrow">→</span></a>

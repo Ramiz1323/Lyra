@@ -10,7 +10,6 @@ const AuthHero = () => {
       <div className="auth-hero__orb auth-hero__orb--3" />
 
       <div className="auth-hero__content">
-        <span className="auth-hero__badge">BETA ACCESS</span>
 
         <h1 className="auth-hero__title">
           The search for{' '}
@@ -19,8 +18,7 @@ const AuthHero = () => {
         </h1>
 
         <p className="auth-hero__description">
-          Join over 50,000 researchers and creators using Lyra to synthesize
-          complex data into actionable insights instantly.
+          Synthesize complex data into actionable insights instantly with Lyra's AI-powered search.
         </p>
 
         {/* Feature Cards */}

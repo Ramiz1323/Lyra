@@ -1,5 +1,5 @@
-@use '../../../styles/variables' as *;
-@use '../../../styles/mixins' as *;
+@use '@styles/variables' as *;
+@use '@styles/mixins' as *;
 
 .social-btn {
   @include glass-card($blur: 12px, $bg: rgba(15, 23, 52, 0.35));

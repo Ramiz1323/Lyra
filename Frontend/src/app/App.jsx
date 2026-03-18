@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { useAuth } from '../features/auth/hooks/useAuth';
-import LoginPage from '../pages/LoginPage/LoginPage';
-import SignupPage from '../pages/SignupPage/SignupPage';
-import HomePage from '../pages/HomePage/HomePage';
+import { useAuth } from '@features/auth/hooks/useAuth';
+import LoginPage from '@pages/LoginPage/LoginPage';
+import SignupPage from '@pages/SignupPage/SignupPage';
+import HomePage from '@pages/HomePage/HomePage';
+import ProtectedRoute from '@components/common/ProtectedRoute/ProtectedRoute';
 
 const App = () => {
   const { handleGetMe } = useAuth();
@@ -14,7 +15,14 @@ const App = () => {
   return (
     <Routes>
       {/* Main Routes */}
-      <Route path='/' element={<HomePage />} />
+      <Route 
+        path='/' 
+        element={
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        } 
+      />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
 

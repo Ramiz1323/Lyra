@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import GlassInput from '../../../components/common/GlassInput/GlassInput';
-import GlassButton from '../../../components/common/GlassButton/GlassButton';
-import SocialButton from '../../../components/common/SocialButton/SocialButton';
-import Divider from '../../../components/common/Divider/Divider';
-import { useAuth } from '../hooks/useAuth';
+import GlassInput from '@components/common/GlassInput/GlassInput';
+import GlassButton from '@components/common/GlassButton/GlassButton';
+import SocialButton from '@components/common/SocialButton/SocialButton';
+import Divider from '@components/common/Divider/Divider';
+import { useAuth } from '@features/auth/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './LoginForm.scss';
 
 const LoginForm = () => {
-  const { handleLogin, loading, error } = useAuth();
-  const [ formData, setFormData] = useState({
+  const { handleLogin, user, loading, error } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && user) {
+      navigate("/");
+    }
+  }, [user, loading, navigate]);
+
+  const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
@@ -18,8 +27,6 @@ const LoginForm = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +41,6 @@ const LoginForm = () => {
         {/* Header */}
         <div className="login-form__header">
           <h2 className="login-form__title">Welcome back</h2>
-          <p className="login-form__subtitle">Access your AI-powered workspace</p>
         </div>
 
         {/* Social Buttons */}
@@ -47,7 +53,7 @@ const LoginForm = () => {
         {/* Form */}
         <form className="login-form__fields" onSubmit={handleSubmit}>
           {error && <div className="login-form__error">{error}</div>}
-          
+
           <GlassInput
             label="Email Address"
             type="email"

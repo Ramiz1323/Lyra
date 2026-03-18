@@ -1,7 +1,7 @@
 import React from 'react';
-import AuthNavbar from '../../components/layout/AuthNavbar/AuthNavbar';
-import AuthHero from '../../features/auth/AuthHero/AuthHero';
-import SignupForm from '../../features/auth/SignupForm/SignupForm';
+import AuthNavbar from '@components/layout/AuthNavbar/AuthNavbar';
+import AuthHero from '@features/auth/components/AuthHero/AuthHero';
+import SignupForm from '@features/auth/components/SignupForm/SignupForm';
 import './SignupPage.scss';
 
 const SignupPage = () => {

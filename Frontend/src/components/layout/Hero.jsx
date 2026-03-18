@@ -9,7 +9,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="hero">
+    <section className="hero" id="product">
       <div className="hero-content">
         <div className="badge">
           <span className="dot"></span>
