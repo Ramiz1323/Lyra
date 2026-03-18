@@ -1,0 +1,73 @@
+@use '../../styles/variables' as *;
+
+.mobile-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $space-lg;
+  background: $bg-primary;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid $glass-border;
+  width: 100%;
+
+  @media (min-width: $bp-desktop) {
+    display: none;
+  }
+
+  .menu-btn {
+    background: none;
+    border: none;
+    padding: $space-sm;
+    cursor: pointer;
+
+    .hamburger {
+      width: 20px;
+      height: 2px;
+      background: $text-primary;
+      position: relative;
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        left: 0;
+      }
+      &::before { top: -6px; }
+      &::after { top: 6px; }
+    }
+  }
+
+  .mobile-logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $text-primary;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+
+    .profile-icon {
+      font-size: 1.25rem;
+      color: $text-secondary;
+    }
+
+    .power-btn {
+      background: $glass-bg;
+      border: 1px solid $glass-border;
+      color: $accent-primary;
+      width: 36px;
+      height: 36px;
+      border-radius: $radius-md;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+}

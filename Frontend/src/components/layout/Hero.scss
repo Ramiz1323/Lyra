@@ -1,0 +1,203 @@
+@use '../../styles/variables' as *;
+
+.hero {
+  padding: $space-2xl 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 50vh;
+
+  @media (max-width: $bp-tablet) {
+    padding: $space-xl 0;
+    min-height: 40vh;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    width: 100%;
+    padding: 0 $space-xl;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-sm;
+    background: rgba($accent-primary, 0.1);
+    color: $accent-light;
+    padding: $space-xs $space-md;
+    border-radius: $radius-full;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba($accent-primary, 0.2);
+    margin-bottom: $space-2xl;
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background: $accent-primary;
+      border-radius: 50%;
+      box-shadow: 0 0 10px $accent-primary;
+    }
+  }
+
+  .hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: $text-primary;
+    margin-bottom: $space-md;
+    line-height: 1.1;
+
+    background: linear-gradient(135deg, $accent-light, #828eff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    @media (max-width: $bp-tablet) {
+      font-size: 2.25rem;
+      margin-bottom: $space-sm;
+    }
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: $text-secondary;
+    line-height: 1.6;
+    margin-bottom: $space-2xl;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: $bp-tablet) {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: $space-xl;
+    }
+  }
+
+  .search-container-wrapper {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto $space-xl;
+    padding: 4px;
+    border-radius: $radius-xl;
+    background: linear-gradient(135deg, $glass-border, transparent, $glass-border);
+  }
+
+  .search-container {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+    backdrop-filter: blur($glass-blur-heavy) saturate(180%);
+    border: 1px solid $glass-border;
+    box-shadow: 
+      inset 0 1px 1px $glass-specular,
+      0 8px 32px rgba(0, 0, 0, 0.4);
+    border-radius: $radius-lg;
+    display: flex;
+    align-items: center;
+    padding: $space-sm $space-sm $space-sm $space-lg;
+    gap: $space-md;
+    transition: $transition-base;
+    position: relative;
+
+    &:focus-within {
+      background: $glass-bg-hover;
+      border-color: rgba($accent-primary, 0.4);
+      box-shadow: 0 0 30px rgba($accent-primary, 0.1);
+    }
+
+    .search-icon {
+      font-size: 1.2rem;
+      opacity: 0.6;
+    }
+
+    .search-input {
+      flex: 1;
+      background: none;
+      border: none;
+      color: $text-primary;
+      font-size: 1.1rem;
+      outline: none;
+      width: 100%;
+
+      &::placeholder {
+        color: $text-muted;
+      }
+
+      @media (max-width: $bp-mobile) {
+        font-size: 0.95rem;
+      }
+    }
+
+    .input-actions {
+      display: flex;
+      align-items: center;
+      gap: $space-md;
+
+      @media (max-width: $bp-mobile) {
+        gap: $space-sm;
+      }
+
+      .mic-icon {
+        cursor: pointer;
+        opacity: 0.6;
+        transition: $transition-fast;
+        &:hover { opacity: 1; }
+      }
+
+      .search-btn {
+        background: $accent-primary;
+        color: white;
+        border: none;
+        padding: $space-sm $space-lg;
+        border-radius: $radius-md;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: $space-sm;
+        cursor: pointer;
+        transition: $transition-fast;
+
+        @media (max-width: $bp-mobile) {
+          padding: $space-sm $space-md;
+          .btn-text { display: none; }
+        }
+
+        &:hover {
+          background: $accent-secondary;
+          transform: scale(1.02);
+        }
+
+        .arrow {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+
+  .suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $space-sm;
+    
+    .suggestion-pill {
+      background: $glass-bg;
+      border: 1px solid $glass-border;
+      color: $text-secondary;
+      padding: $space-xs $space-md;
+      border-radius: $radius-full;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: $transition-fast;
+
+      &:hover {
+        background: $glass-bg-hover;
+        color: $text-primary;
+        border-color: $glass-border-hover;
+      }
+    }
+  }
+}

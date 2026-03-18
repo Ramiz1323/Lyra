@@ -1,0 +1,121 @@
+@use '../../styles/variables' as *;
+
+.capabilities-section {
+  margin-top: $space-2xl;
+  
+  .section-subtitle {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: $text-muted;
+    letter-spacing: 0.1em;
+    margin-bottom: $space-md;
+    text-transform: uppercase;
+  }
+
+  .capabilities-list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+    margin-bottom: $space-2xl;
+  }
+
+  .capability-item {
+    background: $glass-bg;
+    backdrop-filter: blur($glass-blur);
+    border: 1px solid $glass-border;
+    border-radius: $radius-lg;
+    padding: $space-sm $space-md; // Reduced padding
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+    transition: $transition-fast;
+
+    @media (max-width: $bp-mobile) {
+      padding: $space-sm;
+      gap: $space-sm;
+    }
+
+    &:active {
+      background: $glass-bg-hover;
+      transform: scale(0.98);
+    }
+
+    .item-icon-wrapper {
+      width: 44px;
+      height: 44px;
+      background: rgba($accent-primary, 0.1);
+      border-radius: $radius-md;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .item-text {
+      flex: 1;
+      .item-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: $text-primary;
+        margin-bottom: 2px;
+      }
+      .item-subtitle {
+        font-size: 0.8rem;
+        color: $text-secondary;
+      }
+    }
+
+    .chevron {
+      color: $text-muted;
+      font-size: 1.5rem;
+    }
+  }
+
+  .pro-feature-card {
+    position: relative;
+    height: 180px;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    margin-top: $space-xl;
+    box-shadow: $shadow-card;
+
+    .card-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: $transition-slow;
+    }
+
+    .card-content {
+      position: absolute;
+      bottom: $space-lg;
+      left: $space-lg;
+      z-index: 2;
+
+    .pro-label {
+        font-size: 0.65rem;
+        font-weight: 800;
+        color: $accent-light;
+        letter-spacing: 0.05em;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
+        margin-top: 2px;
+      }
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba($bg-primary, 0.9) 0%, transparent 70%);
+      z-index: 1;
+    }
+
+    &:active .card-bg {
+      transform: scale(1.05);
+    }
+  }
+}

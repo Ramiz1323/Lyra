@@ -12,13 +12,22 @@ $error: #ef4444;
 $success: #22c55e;
 $warning: #f59e0b;
 
-// Glass Properties
-$glass-bg: rgba(15, 23, 52, 0.45);
-$glass-bg-hover: rgba(20, 30, 65, 0.55);
-$glass-border: rgba(60, 100, 180, 0.18);
-$glass-border-hover: rgba(80, 130, 220, 0.3);
-$glass-blur: 20px;
-$glass-blur-heavy: 32px;
+// Glass Properties — Liquid Effect
+$glass-inner: rgba(255, 255, 255, 0.03);
+$glass-bg: rgba(10, 15, 30, 0.4);
+$glass-bg-hover: rgba(20, 30, 60, 0.5);
+$glass-border: rgba(255, 255, 255, 0.08);
+$glass-border-hover: rgba(255, 255, 255, 0.15);
+$glass-blur: 24px;
+$glass-blur-heavy: 50px;
+$glass-highlight: rgba(255, 255, 255, 0.05);
+$glass-specular: rgba(255, 255, 255, 0.1);
+
+// Layout
+$sidebar-width: 260px;
+$content-max-width: 1400px;
+$navbar-height: 72px;
+$bottom-nav-height: 80px;
 
 // Accent — Blue
 $accent-primary: #2563eb;

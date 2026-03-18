@@ -1,0 +1,36 @@
+@use '../../styles/variables' as *;
+
+.homepage-layout {
+  display: flex;
+  min-height: 100vh;
+  background: $bg-primary;
+  color: $text-primary;
+  overflow-x: hidden;
+
+  .main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+    @media (min-width: $bp-desktop) {
+      margin-left: 0; // Sidebar is sticky/fixed width
+    }
+  }
+
+  .content {
+    flex: 1;
+    padding: 0;
+    max-width: 100%;
+    
+    @media (max-width: $bp-desktop) {
+      padding-bottom: $bottom-nav-height;
+    }
+  }
+
+  .desktop-only {
+    @media (max-width: $bp-desktop) {
+      display: none;
+    }
+  }
+}

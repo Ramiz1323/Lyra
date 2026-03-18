@@ -5,6 +5,7 @@ import GlassButton from '../../../components/common/GlassButton/GlassButton';
 import SocialButton from '../../../components/common/SocialButton/SocialButton';
 import Divider from '../../../components/common/Divider/Divider';
 import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 import './LoginForm.scss';
 
 const LoginForm = () => {
@@ -18,10 +19,13 @@ const LoginForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = formData;
     await handleLogin({ email, password });
+    navigate("/");
   };
 
   return (

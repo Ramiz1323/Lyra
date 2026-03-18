@@ -1,0 +1,98 @@
+@use '../../styles/variables' as *;
+
+.navbar {
+  height: $navbar-height;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 $space-2xl;
+  z-index: 100;
+  
+  @media (max-width: $bp-desktop) {
+    display: none;
+  }
+
+  .navbar-container {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: $space-2xl;
+  }
+
+  .navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: $space-xl;
+    margin-right: auto;
+    margin-left: $space-2xl;
+
+    .nav-link {
+      color: $text-secondary;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: $transition-fast;
+
+      &:hover {
+        color: $text-primary;
+      }
+    }
+  }
+
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+
+    .signin-btn {
+      background: none;
+      border: none;
+      color: $text-primary;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .get-started-btn {
+      background: $accent-primary;
+      border: none;
+      color: white;
+      padding: $space-sm $space-lg;
+      border-radius: $radius-sm;
+      font-weight: 600;
+      cursor: pointer;
+      transition: $transition-fast;
+
+      &:hover {
+        background: $accent-secondary;
+        box-shadow: 0 0 20px rgba($accent-primary, 0.4);
+      }
+    }
+
+    .profile-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: $radius-full;
+      background: $glass-bg;
+      border: 1px solid $glass-border;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $text-secondary;
+      cursor: pointer;
+      overflow: hidden;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      &:hover {
+        color: $text-primary;
+        border-color: $glass-border-hover;
+      }
+    }
+  }
+}
