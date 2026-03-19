@@ -30,3 +30,16 @@ The socket server is initialized in `src/sockets/server.socket.js` and attached 
 - **CORS Configuration**: Restricted to `http://localhost:5173`.
 - **Event Listeners**: Basic connection logging implemented.
 - **Exported Instance**: `getIO()` utility for emitting events from other parts of the application.
+
+---
+
+## 📈 Recent Activity
+
+### 19/03/2026
+*   **Expanded Chat API**:
+    *   `GET /api/chats`: Retrieves all chats for the authenticated user.
+    *   `GET /api/chats/:id/messages`: Retrieves message history for a specific chat (with ownership check).
+    *   `DELETE /api/chats/delete/:id`: Deletes a chat and its entire message history securely.
+*   **Socket.io Integration**: Established a bi-directional event system for real-time communication.
+*   **Security & Middleware**: Integrated `authUser` protection across all `/api/chats` endpoints.
+*   **AI Service Upgrade**: Implemented `generateResponse` and `generateTitle` using LangChain and Google Generative AI (Gemini).
