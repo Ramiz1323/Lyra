@@ -1,0 +1,65 @@
+@use '@styles/variables' as *;
+
+.source-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: $radius-md;
+  padding: $space-md;
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  transition: all $transition-base;
+  text-decoration: none;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba($accent-primary, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .card-top {
+    .source-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: $accent-primary;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+  }
+
+  .source-snippet {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: $text-secondary;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+
+    .site-info {
+      display: flex;
+      align-items: center;
+      gap: $space-xs;
+
+      .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: $accent-primary;
+      }
+
+      .site-name {
+        font-size: 0.7rem;
+        color: $text-muted;
+      }
+    }
+  }
+}

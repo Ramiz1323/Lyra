@@ -40,6 +40,11 @@
       color: $accent-primary;
     }
 
+    &:active {
+      transform: scale(0.9);
+      color: $accent-primary;
+    }
+
     .nav-icon {
       font-size: 1.25rem;
     }
@@ -73,6 +78,11 @@
       &:hover {
         transform: scale(1.1);
         background: $accent-secondary;
+      }
+
+      &:active {
+        transform: scale(0.9);
+        box-shadow: 0 2px 10px rgba($accent-primary, 0.6);
       }
 
       .plus {

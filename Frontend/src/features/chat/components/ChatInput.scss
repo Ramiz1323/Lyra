@@ -1,0 +1,203 @@
+@use '@styles/variables' as *;
+
+.chat-input-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: $space-lg;
+  position: relative;
+  
+  .chat-input-glass {
+    background: $glass-bg;
+    backdrop-filter: blur($glass-blur-heavy);
+    border: 1px solid $glass-border;
+    border-radius: $radius-2xl;
+    padding: $space-sm $space-md;
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+    box-shadow: $shadow-card, 0 20px 50px rgba(0, 0, 0, 0.3);
+    transition: all $transition-base;
+    position: relative;
+
+    @media (max-width: $bp-tablet) {
+      padding: 6px;
+      gap: 4px;
+      border-radius: $radius-full;
+    }
+
+    &:focus-within {
+      border-color: rgba($accent-primary, 0.4);
+      background: $glass-bg-hover;
+      box-shadow: $shadow-card, $shadow-glow;
+    }
+
+    .action-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: $radius-full;
+      border: none;
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: $transition-fast;
+
+      @media (max-width: $bp-tablet) {
+        width: 36px;
+        height: 36px;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: $text-primary;
+      }
+    }
+
+    textarea {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: $space-md;
+      color: $text-primary;
+      font-size: 1rem;
+      outline: none;
+      resize: none;
+      font-family: inherit;
+      max-height: 200px;
+      overflow-y: auto;
+
+      @media (max-width: $bp-tablet) {
+        padding: $space-sm;
+        font-size: 0.95rem;
+      }
+
+      &::placeholder {
+        color: $text-muted;
+      }
+    }
+
+    .input-actions {
+      display: flex;
+      align-items: center;
+      gap: $space-md;
+
+      @media (max-width: $bp-tablet) {
+        gap: $space-sm;
+      }
+
+      .model-selector {
+        background: rgba(0, 0, 0, 0.2);
+        padding: $space-sm $space-md;
+        border-radius: $radius-full;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        gap: $space-sm;
+        cursor: pointer;
+        transition: $transition-fast;
+
+        @media (max-width: $bp-tablet) {
+          display: none; // Hide model selector on mobile like image
+        }
+
+        .dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: $accent-primary;
+          box-shadow: 0 0 8px $accent-primary;
+        }
+
+        .model-name {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: $text-secondary;
+        }
+
+        .dropdown-icon {
+          font-size: 16px;
+          color: $text-muted;
+        }
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.05);
+          border-color: rgba($accent-primary, 0.2);
+        }
+      }
+
+      .send-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.05);
+        color: $text-muted;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: not-allowed;
+        transition: all $transition-base;
+
+        @media (max-width: $bp-tablet) {
+          width: 40px;
+          height: 40px;
+        }
+
+        span {
+          font-size: 24px;
+          transform: translateY(-1px);
+        }
+
+        &.active {
+          background: $accent-primary;
+          color: #fff;
+          cursor: pointer;
+          box-shadow: 0 0 20px rgba($accent-primary, 0.4);
+
+          @media (max-width: $bp-tablet) {
+            background: $accent-primary;
+            color: #000; // Matches the black icon color on light blue in the image
+          }
+
+          &:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 0 30px rgba($accent-primary, 0.6);
+          }
+        }
+      }
+    }
+  }
+
+  .input-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-md;
+    margin-top: $space-md;
+    opacity: 0.5;
+
+    @media (max-width: $bp-tablet) {
+      display: none; // Hide shortcuts on mobile
+    }
+
+    .hint-item {
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      color: $text-muted;
+
+      b {
+        color: $text-secondary;
+      }
+    }
+
+    .hint-divider {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: $text-muted;
+    }
+  }
+}

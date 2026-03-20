@@ -1,20 +1,34 @@
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
-import { HumanMessage, SystemMessage,AIMessage } from "@langchain/core/messages";
+import { ChatMistralAI } from "@langchain/mistralai";
+import { HumanMessage, SystemMessage, AIMessage } from "@langchain/core/messages";
 
-const model = new ChatGoogleGenerativeAI({
-  model: "gemini-2.5-flash-lite",
-  apiKey: process.env.GOOGLE_API_KEY,
+const model = new ChatMistralAI({
+  model: "mistral-small-latest",
+  apiKey: process.env.MISTRAL_API_KEY,
 });
 
-export async function generateResponse(message) {
-  const response = await model.invoke(message.map((msg)=>{
-    if(msg.role === "user"){
+export async function generateResponse(messages) {
+  const systemPrompt = new SystemMessage(`
+    You are Lyra AI, an elite, highly intelligent research assistant. 
+    Your mission is to provide comprehensive, detailed, and genuine answers to user queries.
+    
+    GUIDELINES:
+    - NEVER provide brief or one-sentence responses unless the user explicitly requests a short answer.
+    - Structure your answers beautifully using Markdown: use clear headings, bullet points, and organized paragraphs.
+    - For technical tasks (like deployment or coding), provide thorough, step-by-step instructions and best practices.
+    - Deeply synthesize information and offer insightful explanations.
+    - Maintain a professional, sophisticated, and helpful tone.
+    - Always prioritize accuracy and depth over speed.
+  `);
+
+  const formattedMessages = messages.map((msg) => {
+    if (msg.role === "user") {
       return new HumanMessage(msg.content);
-    }
-    else{
+    } else {
       return new AIMessage(msg.content);
     }
-  }));
+  });
+
+  const response = await model.invoke([systemPrompt, ...formattedMessages]);
 
   return response.text;
 }

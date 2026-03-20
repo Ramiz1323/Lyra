@@ -8,6 +8,7 @@
   justify-content: center;
   text-align: center;
   min-height: 50vh;
+  position: relative;
 
   @media (max-width: $bp-tablet) {
     padding: $space-xl 0;
@@ -15,9 +16,11 @@
   }
 
   .hero-content {
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
     padding: 0 $space-xl;
+    position: relative;
+    z-index: 1;
   }
 
   .badge {
@@ -25,14 +28,15 @@
     align-items: center;
     gap: $space-sm;
     background: rgba($accent-primary, 0.1);
-    color: $accent-light;
+    color: $accent-primary;
     padding: $space-xs $space-md;
     border-radius: $radius-full;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
     border: 1px solid rgba($accent-primary, 0.2);
     margin-bottom: $space-2xl;
+    text-transform: uppercase;
 
     .dot {
       width: 6px;
@@ -44,134 +48,128 @@
   }
 
   .hero-title {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: 800;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     color: $text-primary;
     margin-bottom: $space-md;
-    line-height: 1.1;
+    line-height: 1.05;
 
-    background: linear-gradient(135deg, $accent-light, #828eff);
+    background: linear-gradient(135deg, $text-primary 60%, $accent-primary);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 
+    .highlight {
+      color: $accent-primary;
+      -webkit-text-fill-color: initial;
+      filter: drop-shadow(0 0 20px rgba($accent-primary, 0.3));
+    }
+
     @media (max-width: $bp-tablet) {
-      font-size: 2.25rem;
-      margin-bottom: $space-sm;
+      font-size: 2.75rem;
     }
   }
 
   .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     color: $text-secondary;
     line-height: 1.6;
     margin-bottom: $space-2xl;
-    max-width: 600px;
+    max-width: 650px;
     margin-left: auto;
     margin-right: auto;
 
     @media (max-width: $bp-tablet) {
-      font-size: 0.95rem;
-      line-height: 1.4;
-      margin-bottom: $space-xl;
+      font-size: 1rem;
+      max-width: 100%;
     }
   }
 
   .search-container-wrapper {
     width: 100%;
-    max-width: 700px;
+    max-width: 750px;
     margin: 0 auto $space-xl;
-    padding: 4px;
-    border-radius: $radius-xl;
-    background: linear-gradient(135deg, $glass-border, transparent, $glass-border);
+    padding: 1px;
+    background: linear-gradient(135deg, rgba($accent-primary, 0.3), transparent, rgba($accent-primary, 0.3));
+    border-radius: $radius-2xl;
+    box-shadow: $shadow-glow;
   }
 
-  .search-container {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
-    backdrop-filter: blur($glass-blur-heavy) saturate(180%);
+  .search-area {
+    background: $glass-bg;
+    backdrop-filter: blur($glass-blur-heavy);
     border: 1px solid $glass-border;
-    box-shadow: 
-      inset 0 1px 1px $glass-specular,
-      0 8px 32px rgba(0, 0, 0, 0.4);
-    border-radius: $radius-lg;
-    display: flex;
-    align-items: center;
-    padding: $space-sm $space-sm $space-sm $space-lg;
-    gap: $space-md;
-    transition: $transition-base;
-    position: relative;
+    border-radius: $radius-2xl;
+    cursor: pointer;
+    transition: all $transition-base;
 
-    &:focus-within {
+    &:hover {
       background: $glass-bg-hover;
       border-color: rgba($accent-primary, 0.4);
-      box-shadow: 0 0 30px rgba($accent-primary, 0.1);
+      transform: translateY(-2px);
+      box-shadow: $shadow-glow-strong;
     }
 
-    .search-icon {
-      font-size: 1.2rem;
-      opacity: 0.6;
-    }
-
-    .search-input {
-      flex: 1;
-      background: none;
-      border: none;
-      color: $text-primary;
-      font-size: 1.1rem;
-      outline: none;
-      width: 100%;
-
-      &::placeholder {
-        color: $text-muted;
-      }
-
-      @media (max-width: $bp-mobile) {
-        font-size: 0.95rem;
-      }
-    }
-
-    .input-actions {
+    .search-input-wrapper {
       display: flex;
       align-items: center;
+      padding: $space-sm $space-sm $space-sm $space-xl;
       gap: $space-md;
 
-      @media (max-width: $bp-mobile) {
-        gap: $space-sm;
+      .search-icon {
+        font-size: 24px;
+        color: $accent-primary;
+        opacity: 0.8;
       }
 
-      .mic-icon {
-        cursor: pointer;
-        opacity: 0.6;
-        transition: $transition-fast;
-        &:hover { opacity: 1; }
-      }
-
-      .search-btn {
-        background: $accent-primary;
-        color: white;
+      input {
+        flex: 1;
+        background: none;
         border: none;
-        padding: $space-sm $space-lg;
-        border-radius: $radius-md;
-        font-weight: 600;
+        color: $text-primary;
+        font-size: 1.1rem;
+        padding: $space-md 0;
+        outline: none;
+        cursor: pointer;
+
+        &::placeholder {
+          color: $text-muted;
+        }
+      }
+
+      .search-actions {
         display: flex;
         align-items: center;
-        gap: $space-sm;
-        cursor: pointer;
-        transition: $transition-fast;
+        gap: $space-md;
 
-        @media (max-width: $bp-mobile) {
-          padding: $space-sm $space-md;
-          .btn-text { display: none; }
+        span {
+          color: $text-muted;
+          font-size: 20px;
         }
 
-        &:hover {
-          background: $accent-secondary;
-          transform: scale(1.02);
-        }
+        .search-btn {
+          width: 48px;
+          height: 48px;
+          border-radius: $radius-xl;
+          background: $accent-primary;
+          border: none;
+          color: $bg-primary;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          box-shadow: 0 0 15px rgba($accent-primary, 0.4);
+          
+          span {
+            font-size: 24px;
+            color: inherit;
+          }
 
-        .arrow {
-          font-size: 1.1rem;
+          &:hover {
+            transform: scale(1.05);
+            background: $accent-light;
+          }
         }
       }
     }
@@ -181,22 +179,24 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: $space-sm;
+    gap: $space-md;
     
     .suggestion-pill {
-      background: $glass-bg;
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid $glass-border;
-      color: $text-secondary;
-      padding: $space-xs $space-md;
+      color: $text-muted;
+      padding: $space-sm $space-xl;
       border-radius: $radius-full;
       font-size: 0.85rem;
+      font-weight: 600;
       cursor: pointer;
       transition: $transition-fast;
 
       &:hover {
-        background: $glass-bg-hover;
+        background: $glass-inner;
         color: $text-primary;
-        border-color: $glass-border-hover;
+        border-color: rgba($accent-primary, 0.3);
+        transform: translateY(-1px);
       }
     }
   }

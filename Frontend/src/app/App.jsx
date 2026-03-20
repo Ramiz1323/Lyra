@@ -5,6 +5,7 @@ import LoginPage from '@pages/LoginPage/LoginPage';
 import SignupPage from '@pages/SignupPage/SignupPage';
 import HomePage from '@pages/HomePage/HomePage';
 import ProtectedRoute from '@components/common/ProtectedRoute/ProtectedRoute';
+import ChatPage from '@pages/ChatPage/ChatPage';
 
 const App = () => {
   const { handleGetMe } = useAuth();
@@ -20,6 +21,14 @@ const App = () => {
         element={
           <ProtectedRoute>
             <HomePage />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path='/chat' 
+        element={
+          <ProtectedRoute>
+            <ChatPage />
           </ProtectedRoute>
         } 
       />

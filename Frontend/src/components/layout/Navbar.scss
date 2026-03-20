@@ -21,12 +21,37 @@
     gap: $space-2xl;
   }
 
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+    margin-right: auto;
+    cursor: pointer;
+
+    .brand-logo {
+      color: $accent-primary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      span {
+        font-size: 24px;
+        filter: drop-shadow(0 0 8px $accent-primary);
+      }
+    }
+
+    .brand-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: $text-primary;
+    }
+  }
+
   .navbar-menu {
     display: flex;
     align-items: center;
     gap: $space-xl;
-    margin-right: auto;
-    margin-left: $space-2xl;
+    margin-right: $space-2xl;
 
     .nav-link {
       color: $text-secondary;
@@ -46,52 +71,80 @@
     align-items: center;
     gap: $space-md;
 
-    .signin-btn {
-      background: none;
-      border: none;
-      color: $text-primary;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 0.95rem;
-    }
-
-    .get-started-btn {
-      background: $accent-primary;
-      border: none;
-      color: white;
+    .launch-btn {
+      background: rgba($accent-primary, 0.1);
+      border: 1px solid rgba($accent-primary, 0.2);
+      color: $accent-primary;
       padding: $space-sm $space-lg;
-      border-radius: $radius-sm;
-      font-weight: 600;
-      cursor: pointer;
-      transition: $transition-fast;
-
-      &:hover {
-        background: $accent-secondary;
-        box-shadow: 0 0 20px rgba($accent-primary, 0.4);
-      }
-    }
-
-    .profile-circle {
-      width: 40px;
-      height: 40px;
-      border-radius: $radius-full;
-      background: $glass-bg;
-      border: 1px solid $glass-border;
+      border-radius: $radius-md;
+      font-weight: 700;
+      text-decoration: none;
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: $text-secondary;
-      cursor: pointer;
-      overflow: hidden;
+      gap: $space-sm;
+      font-size: 0.9rem;
+      transition: $transition-fast;
 
-      svg {
-        width: 24px;
-        height: 24px;
-      }
+      span { font-size: 18px; }
 
       &:hover {
-        color: $text-primary;
-        border-color: $glass-border-hover;
+        background: rgba($accent-primary, 0.15);
+        border-color: rgba($accent-primary, 0.4);
+        transform: translateY(-1px);
+        box-shadow: 0 0 20px rgba($accent-primary, 0.1);
+      }
+    }
+
+    .profile-section {
+      display: flex;
+      align-items: center;
+      gap: $space-md;
+      padding-left: $space-md;
+      border-left: 1px solid $glass-border;
+
+      .user-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        .user-name {
+          color: $text-primary;
+          font-weight: 600;
+          font-size: 0.9rem;
+        }
+
+        .user-plan {
+          color: $accent-primary;
+          font-size: 0.7rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+      }
+
+      .profile-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: $radius-full;
+        background: $glass-bg;
+        border: 2px solid rgba($accent-primary, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        overflow: hidden;
+        transition: $transition-fast;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        &:hover {
+          border-color: $accent-primary;
+          box-shadow: 0 0 15px rgba($accent-primary, 0.3);
+        }
       }
     }
   }

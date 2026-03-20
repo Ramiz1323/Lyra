@@ -3,7 +3,7 @@
 .sidebar {
   width: $sidebar-width;
   height: 100vh;
-  background: $bg-secondary;
+  background: $bg-primary;
   border-right: 1px solid $glass-border;
   display: flex;
   flex-direction: column;
@@ -11,27 +11,166 @@
   position: sticky;
   top: 0;
   transition: $transition-base;
+  z-index: 100;
 
-  @media (max-width: $bp-desktop) {
+  .close-sidebar-btn {
     display: none;
   }
 
-  .sidebar-logo {
+  @media (max-width: $bp-desktop) {
+    position: fixed;
+    left: -100%;
+    z-index: 1000;
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+    display: flex !important;
+    
+    &.open {
+      left: 0;
+      
+      .close-sidebar-btn {
+        display: flex;
+      }
+    }
+
+    .close-sidebar-btn {
+      position: absolute;
+      top: $space-lg;
+      right: $space-lg;
+      width: 40px;
+      height: 40px;
+      border-radius: $radius-full;
+      background: rgba($glass-bg, 0.9);
+      border: 1px solid $glass-border;
+      color: $text-primary;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1001;
+      transition: all $transition-fast;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+      &:active {
+        transform: scale(0.9);
+        background: $accent-primary;
+        color: white;
+      }
+      
+      span { font-size: 24px; }
+    }
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+    margin-bottom: $space-2xl;
+    padding: 0 $space-xs;
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      background: $glass-bg;
+      border: 1px solid $glass-border;
+      border-radius: $radius-md;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $accent-primary;
+      box-shadow: $shadow-glow;
+      
+      span {
+        font-size: 24px;
+        filter: drop-shadow(0 0 8px $accent-primary);
+      }
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+
+      .brand-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: $text-primary;
+        letter-spacing: -0.01em;
+      }
+
+      .brand-subtitle {
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: $text-muted;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .new-chat-btn {
+    width: 100%;
+    padding: $space-md;
+    margin-bottom: $space-2xl;
+    background: $glass-bg;
+    border: 1px solid $glass-border;
+    border-radius: $radius-lg;
+    color: $text-primary;
+    font-weight: 600;
+    font-size: 0.95rem;
     display: flex;
     align-items: center;
     gap: $space-sm;
-    margin-bottom: $space-2xl;
-    
-    .logo-icon {
-      width: 32px;
-      height: 32px;
-      color: $accent-primary;
+    cursor: pointer;
+    transition: all $transition-base;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba($accent-primary, 0.1), transparent);
+      opacity: 0;
+      transition: opacity $transition-base;
     }
 
-    .logo-text {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: $text-primary;
+    span {
+      color: $accent-primary;
+      font-size: 20px;
+    }
+
+    &:hover {
+      background: $glass-bg-hover;
+      border-color: rgba($accent-primary, 0.3);
+      transform: translateY(-2px);
+      box-shadow: $shadow-glow;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
     }
   }
 
@@ -39,7 +178,66 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: $space-xs;
+    justify-content: space-between;
+
+    .nav-group {
+      display: flex;
+      flex-direction: column;
+      gap: $space-xs;
+
+      &.recent-threads {
+        margin-top: $space-xl;
+        
+        .group-label {
+          font-size: 0.65rem;
+          font-weight: 700;
+          color: $text-muted;
+          padding: 0 $space-md;
+          margin-bottom: $space-sm;
+          letter-spacing: 0.1em;
+        }
+
+        .thread-item {
+          padding-right: $space-sm; // Make room for delete icon
+          
+          .nav-label {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.9rem;
+          }
+
+          .delete-thread-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: $radius-sm;
+            border: none;
+            background: transparent;
+            color: $text-muted;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all $transition-fast;
+            cursor: pointer;
+
+            span { font-size: 18px; }
+
+            &:hover {
+              background: rgba(255, 59, 48, 0.15);
+              color: #ff3b30;
+            }
+          }
+
+          &:hover {
+            .delete-thread-btn {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
 
     .nav-item {
       display: flex;
@@ -50,86 +248,105 @@
       color: $text-secondary;
       cursor: pointer;
       transition: $transition-fast;
-
-      &:hover {
-        background: $glass-bg-hover;
-        color: $text-primary;
-      }
-
-      &.active {
-        background: $glass-bg;
-        color: $text-primary;
-        box-shadow: inset 0 0 0 1px $glass-border;
-        background: linear-gradient(90deg, rgba($accent-primary, 0.1), transparent);
-      }
+      position: relative;
 
       .nav-icon {
-        font-size: 1.25rem;
+        font-size: 20px;
+        transition: transform $transition-base;
       }
 
       .nav-label {
         font-weight: 500;
+        font-size: 0.95rem;
       }
+
+      &:hover {
+        background: $glass-inner;
+        color: $text-primary;
+
+        .nav-icon {
+          transform: scale(1.1);
+          color: $accent-primary;
+        }
+      }
+
+      &.active {
+        color: $text-primary;
+        background: linear-gradient(90deg, rgba($accent-primary, 0.12), transparent);
+        
+        &::after {
+          content: '';
+          position: absolute;
+          left: -4px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 4px;
+          height: 18px;
+          background: $accent-primary;
+          border-radius: $radius-full;
+          box-shadow: 0 0 12px $accent-primary;
+        }
+
+        .nav-icon {
+          color: $accent-primary;
+        }
+      }
+    }
+
+    .footer-nav {
+      border-top: 1px solid rgba($glass-border, 0.5);
+      padding-top: $space-lg;
     }
   }
 
   .sidebar-footer {
+    margin-top: $space-xl;
     padding-top: $space-lg;
 
-    .pro-card {
-      background: $glass-bg;
-      backdrop-filter: blur($glass-blur);
-      border: 1px solid $glass-border;
-      border-radius: $radius-lg;
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: $space-md;
       padding: $space-md;
-      position: relative;
-      overflow: hidden;
+      background: $bg-secondary;
+      border: 1px solid $glass-border;
+      border-radius: $radius-xl;
+      transition: $transition-base;
+      cursor: pointer;
 
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, $glass-specular, transparent);
+      &:hover {
+        background: $glass-bg-hover;
+        border-color: rgba($accent-primary, 0.2);
       }
 
-      .pro-tag {
-        font-size: 0.7rem;
-        font-weight: 700;
-        color: $accent-light;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        display: block;
-        margin-bottom: $space-xs;
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: $radius-full;
+        overflow: hidden;
+        border: 2px solid rgba($accent-primary, 0.3);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
 
-      p {
-        font-size: 0.85rem;
-        color: $text-secondary;
-        margin-bottom: $space-md;
-        line-height: 1.4;
-      }
-
-      .upgrade-btn {
-        width: 100%;
-        padding: $space-sm;
-        border-radius: $radius-sm;
-        border: none;
-        background: $accent-primary;
-        color: white;
-        font-weight: 600;
+      .user-info {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: $space-xs;
-        cursor: pointer;
-        transition: $transition-fast;
+        flex-direction: column;
 
-        &:hover {
-          background: $accent-secondary;
-          transform: translateY(-1px);
+        .user-name {
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: $text-primary;
+        }
+
+        .user-status {
+          font-size: 0.75rem;
+          color: $accent-primary;
+          font-weight: 500;
         }
       }
     }
