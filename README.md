@@ -7,11 +7,11 @@
 
 ## ✨ Features
 
-- 🧠 **Elite Research Intelligence**: Powered by Google Gemini, Lyra provides deep, long-form answers with professional Markdown formatting.
+- 🧠 **Elite Research Intelligence**: Powered by Mistral AI, Lyra provides deep, long-form answers with professional Markdown formatting.
 - 🧵 **Thread Management**: Organize your research with persistent chat history. Switch, rename, or delete threads with ease.
 - 📱 **Fully Responsive UI**: A premium, glassmorphic design that works perfectly on desktop and mobile.
 - ⚡ **Real-time Synthesis**: Powered by Socket.io for instant, streaming-like communication between the interface and AI brain.
-- 🔗 **Source Transparency**: Every answer is backed by verifiable web insights and structured truth.
+- 🔍 **Tavily Research Mode**: Real-time web search capabilities optimized for detailed, cited insights.
 
 ---
 
@@ -24,7 +24,7 @@
 | **Backend** | Node.js + Express |
 | **Real-time** | Socket.io |
 | **Database** | MongoDB |
-| **AI Brain** | Google Gemini API (LangChain integration) |
+| **AI Brain** | Mistral AI + Tavily (LangChain integration) |
 
 ---
 
@@ -33,7 +33,8 @@
 ### 1. Prerequisite
 - Node.js (v18+)
 - MongoDB (Local or Atlas)
-- Google AI (Gemini) API Key
+- Mistral AI API Key
+- Tavily API Key (for Research Mode)
 
 ### 2. Clone the Repository
 ```bash
@@ -50,7 +51,8 @@ Create a `.env` file in the `Backend` directory:
 ```env
 PORT=3000
 MONGO_URI=your_mongodb_uri
-GOOGLE_API_KEY=your_gemini_api_key
+MISTRAL_API_KEY=your_mistral_api_key
+TAVILY_API_KEY=your_tavily_api_key
 JWT_SECRET=your_jwt_secret
 ```
 Run the server:
@@ -71,12 +73,6 @@ Start the development server:
 ```bash
 npm run dev
 ```
-
----
-
-## 📸 Screenshots
-
-![Lyra AI Desktop Interface](file:///C:/Users/LENOVO/.gemini/antigravity/brain/d1403ccb-7cc4-4b7a-883a-0b48095f9ad1/mern_deployment_response_1773951086284.png)
 
 ---
 

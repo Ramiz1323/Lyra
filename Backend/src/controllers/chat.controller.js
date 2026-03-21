@@ -49,7 +49,8 @@ export async function sendMessages(req, res) {
             aiMessage,
         });
     } catch (error) {
-        console.error("Error in sendMessages:", error);
+        console.error("Error in sendMessages:", error.message || "Unknown error");
+        if (error.stack) console.error("Stack trace:", error.stack);
         res.status(500).json({ message: "Internal server error while processing message" });
     }
 }

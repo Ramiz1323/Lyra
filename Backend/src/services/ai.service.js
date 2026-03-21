@@ -1,10 +1,31 @@
 import { ChatMistralAI } from "@langchain/mistralai";
 import { HumanMessage, SystemMessage, AIMessage } from "@langchain/core/messages";
+import * as z from "zod";
+import { tool } from "@langchain/core/tools";
+import { createAgent } from "langchain";
+import { searchInternet } from "./internet.service.js";
 
 const model = new ChatMistralAI({
   model: "mistral-small-latest",
   apiKey: process.env.MISTRAL_API_KEY,
 });
+
+const searchInternetTool = tool(
+  searchInternet,
+  {
+    name: "search_internet",
+    description: "Use this tool to search the internet for relevant information to answer the user's query.",
+    schema: z.object({
+      query: z.string().describe("The search query to look up on the internet."),
+    }),
+  }
+)
+
+const agent = createAgent({
+  model: model,
+  tools: [searchInternetTool],
+  systemPrompt: "You are Lyra AI, an elite, highly intelligent research assistant."
+})
 
 export async function generateResponse(messages) {
   const systemPrompt = new SystemMessage(`
@@ -28,9 +49,16 @@ export async function generateResponse(messages) {
     }
   });
 
-  const response = await model.invoke([systemPrompt, ...formattedMessages]);
+  const response = await agent.invoke({
+    messages: [systemPrompt, ...formattedMessages]
+  });
 
-  return response.text;
+  if (!response.messages || response.messages.length === 0) {
+    console.error("Agent response state:", response);
+    throw new Error("AI Agent returned no messages in the final state.");
+  }
+
+  return response.messages[response.messages.length - 1].content;
 }
 
 export async function generateTitle(message) {
@@ -42,5 +70,5 @@ export async function generateTitle(message) {
     `),
     new HumanMessage(`Generate title for this message: ${message}`)
   ]);
-  return response.text;
+  return response.content;
 }

@@ -17,7 +17,14 @@ function getTransporter() {
         
         transporter.verify()
             .then(() => { console.log("Email transporter is ready to send emails"); })
-            .catch((err) => { console.error("Email transporter verification failed:", err); });
+            .catch((err) => { 
+                console.error("Email transporter verification failed:");
+                console.error("Code:", err.code);
+                console.error("Message:", err.message);
+                if (err.message.includes('invalid_grant')) {
+                    console.error("HINT: Your GOOGLE_REFRESH_TOKEN might be expired or revoked. Please follow the steps in the implementation plan to generate a new one.");
+                }
+            });
     }
     return transporter;
 }
